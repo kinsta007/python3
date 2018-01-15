@@ -1,0 +1,208 @@
+#ui界面由qtdesigner生成
+import urllib.request
+import gzip
+import json
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from lxml import etree
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+#from xpinyin import Pinyin #使用xpinyin模块无法编译成EXE文件，含有**.dat文件无法解析。
+from pypinyin import pinyin, lazy_pinyin
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+            Form.setObjectName("Form")
+            Form.resize(501, 433)
+            self.label = QtWidgets.QLabel(Form)
+            self.label.setGeometry(QtCore.QRect(80, 20, 65, 16))
+            self.label.setObjectName("label")
+            self.label_13 = QtWidgets.QLabel(Form)
+            self.label_13.setGeometry(QtCore.QRect(410, 20, 80, 16))
+            self.label_13.setObjectName("label_13")
+            
+            self.lineEdit = QtWidgets.QLineEdit(Form)
+            self.lineEdit.setGeometry(QtCore.QRect(150, 20, 133, 20))
+            self.lineEdit.setObjectName("lineEdit")
+            self.groupBox = QtWidgets.QGroupBox(Form)
+            self.groupBox.setGeometry(QtCore.QRect(10, 40, 481, 111))
+            self.groupBox.setObjectName("groupBox")
+            self.label_2 = QtWidgets.QLabel(self.groupBox)
+            self.label_2.setGeometry(QtCore.QRect(20, 40, 62, 16))
+            self.label_2.setObjectName("label_2")
+            self.label_3 = QtWidgets.QLabel(self.groupBox)
+            self.label_3.setGeometry(QtCore.QRect(60, 40, 63, 16))
+            self.label_3.setObjectName("label_3")
+            self.label_4 = QtWidgets.QLabel(self.groupBox)
+            self.label_4.setGeometry(QtCore.QRect(130, 40, 62, 16))
+            self.label_4.setObjectName("label_4")
+            self.label_5 = QtWidgets.QLabel(self.groupBox)
+            self.label_5.setGeometry(QtCore.QRect(190, 40, 63, 16))
+            self.label_5.setObjectName("label_5")
+            self.label_6 = QtWidgets.QLabel(self.groupBox)
+            self.label_6.setGeometry(QtCore.QRect(250, 40, 62, 16))
+            self.label_6.setObjectName("label_6")
+            self.label_7 = QtWidgets.QLabel(self.groupBox)
+            self.label_7.setGeometry(QtCore.QRect(310, 40, 62, 16))
+            self.label_7.setObjectName("label_7")
+            self.label_8 = QtWidgets.QLabel(self.groupBox)
+            self.label_8.setGeometry(QtCore.QRect(370, 40, 63, 16))
+            self.label_8.setObjectName("label_8")
+            self.label_9 = QtWidgets.QLabel(self.groupBox)
+            self.label_9.setGeometry(QtCore.QRect(430, 40, 62, 16))
+            self.label_9.setObjectName("label_9")
+            self.lineEdit_3 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_3.setGeometry(QtCore.QRect(70, 70, 41, 20))
+            self.lineEdit_3.setObjectName("lineEdit_3")
+            self.lineEdit_4 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_4.setGeometry(QtCore.QRect(130, 70, 41, 20))
+            self.lineEdit_4.setObjectName("lineEdit_4")
+            self.lineEdit_5 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_5.setGeometry(QtCore.QRect(190, 70, 41, 20))
+            self.lineEdit_5.setObjectName("lineEdit_5")
+            self.lineEdit_6 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_6.setGeometry(QtCore.QRect(250, 70, 41, 20))
+            self.lineEdit_6.setObjectName("lineEdit_6")
+            self.lineEdit_7 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_7.setGeometry(QtCore.QRect(310, 70, 41, 20))
+            self.lineEdit_7.setObjectName("lineEdit_7")
+            self.lineEdit_8 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_8.setGeometry(QtCore.QRect(370, 70, 41, 20))
+            self.lineEdit_8.setObjectName("lineEdit_8")
+            self.lineEdit_9 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_9.setGeometry(QtCore.QRect(430, 70, 41, 20))
+            self.lineEdit_9.setObjectName("lineEdit_9")
+            self.label_10 = QtWidgets.QLabel(self.groupBox)
+            self.label_10.setGeometry(QtCore.QRect(313, 10, 161, 20))
+            self.label_10.setObjectName("label_10")
+            self.lineEdit_10 = QtWidgets.QLineEdit(self.groupBox)
+            self.lineEdit_10.setGeometry(QtCore.QRect(10, 70, 41, 20))
+            self.lineEdit_10.setObjectName("lineEdit_10")
+            self.groupBox_2 = QtWidgets.QGroupBox(Form)
+            self.groupBox_2.setGeometry(QtCore.QRect(10, 170, 481, 261))
+            self.groupBox_2.setObjectName("groupBox_2")
+            self.label_11 = QtWidgets.QLabel(self.groupBox_2)
+            self.label_11.setGeometry(QtCore.QRect(10, 60, 54, 12))
+            self.label_11.setObjectName("label_11")
+            self.label_12 = QtWidgets.QLabel(self.groupBox_2)
+            self.label_12.setGeometry(QtCore.QRect(10, 160, 71, 41))
+            self.label_12.setObjectName("label_12")
+            self.textEdit = QtWidgets.QTextEdit(self.groupBox_2)
+            self.textEdit.setGeometry(QtCore.QRect(80, 110, 391, 131))
+            self.textEdit.setObjectName("textEdit")
+            self.textEdit_2 = QtWidgets.QTextEdit(self.groupBox_2)
+            self.textEdit_2.setGeometry(QtCore.QRect(80, 20, 391, 81))
+            self.textEdit_2.setObjectName("textEdit_2")
+
+            self.retranslateUi(Form)
+            self.lineEdit.returnPressed.connect(self.get_weather)#按回车键关联get_weather()
+            self.lineEdit.returnPressed.connect(self.get_pm25)#按回车键关联get_pm25()
+            QtCore.QMetaObject.connectSlotsByName(Form)
+            
+
+    def retranslateUi(self, Form):
+            _translate = QtCore.QCoreApplication.translate
+            Form.setWindowTitle(_translate("Form", "Weather and PM25"))
+            self.label.setText(_translate("Form", "输入城市："))
+            self.groupBox.setTitle(_translate("Form", "PM2.5"))
+            self.label_2.setText(_translate("Form", "AQI"))
+            self.label_3.setText(_translate("Form", "PM2.5/1h"))
+            self.label_4.setText(_translate("Form", "PM10/1h"))
+            self.label_5.setText(_translate("Form", "CO/1h"))
+            self.label_6.setText(_translate("Form", "NO2/1h"))
+            self.label_7.setText(_translate("Form", "O3/1h"))
+            self.label_8.setText(_translate("Form", "O3/8h"))
+            self.label_9.setText(_translate("Form", "SO2/1h"))
+            self.label_10.setText(_translate("Form", "数值单位：μg/m3(CO为mg/m3)"))
+            self.groupBox_2.setTitle(_translate("Form", "Weather"))
+            self.label_11.setText(_translate("Form", "当前天气："))
+            self.label_12.setText(_translate("Form", "未来几天："))
+            self.label_13.setText(_translate("Form", "作者：祝金星"))
+        
+    def get_weather(self):
+            city_name=self.lineEdit.text()#text()文本框的输入内容
+            url1 = 'http://wthrcdn.etouch.cn/weather_mini?city='+urllib.parse.quote(city_name)
+            #print(url1)
+            weather_data = urllib.request.urlopen(url1).read()
+            weather_data = gzip.decompress(weather_data).decode('utf-8')
+            weather_dict = json.loads(weather_data)
+            if weather_dict.get('desc') == 'invilad-citykey':
+                self.textEdit_2.setText('你输入的城市名有误，或者天气中心未收录你所在城市')
+            elif weather_dict.get('desc') =='OK':
+                forecast = weather_dict.get('data').get('forecast')
+                a =weather_dict.get('data')
+                b =forecast[0]
+#当天的天气：
+                self.textEdit_2.clear() #清除前一次所有文本信息
+                self.textEdit_2.insertPlainText('城市：'+a.get('city')+';          '+'日期：'+b.get('date')+';          '
+                                                +'天气：'+b.get('type')+';          '+'温度：'+a.get('wendu')+'℃ ;         '
+                                                +'风向：'+b.get('fengxiang')+';          '+'风级：'+b.get('fengli')+';         '
+                                                +b.get('high')+';          '+b.get('low')+';                         '
+                                                 +'温馨提示：'+a.get('ganmao'))
+#未来几天的天气：
+            self.textEdit.clear()#清除前一次所有文本信息
+            for i in range(1,5):  
+                    self.textEdit.insertPlainText('日期：'+forecast[i].get('date')+';     '+'天气：'+forecast[i].get('type')+';     '
+                                              +'风向：'+forecast[i].get('fengxiang')+';     '+'风级：'+forecast[i].get('fengli')+';     '
+                                              +forecast[i].get('high')+';     '+forecast[i].get('low')+';                   ')
+
+
+    def get_pm25(self):#pathon3定义函数不能出现小数点.
+        zhongwen =self.lineEdit.text()
+        #city_name_2 =Pinyin().get_pinyin(zhongwen,'')#改模块无法编译成exe文件。
+        city_name_2 = ''.join( lazy_pinyin( zhongwen ) )#中文转化成拼音。
+        pm25_url='http://pm25.in/'+str(city_name_2)
+        req = urllib.request.Request(pm25_url)
+        response = urllib.request.urlopen(req)
+        pm25_html =response.read().decode('utf-8')
+        selector=etree.HTML(pm25_html)
+        #获取AQI_value
+        content1=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[1]/div[1]/text()')
+        value1 =content1[0].strip().lstrip().rstrip()
+        self.lineEdit_10.clear()
+        self.lineEdit_10.setText(value1)
+        #获取PM25/1h_value
+        content2=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[2]/div[1]/text()')
+        value2 =content2[0].strip().lstrip().rstrip()
+        self.lineEdit_3.clear()
+        self.lineEdit_3.setText(value2)
+        #获取PM10/1h_value
+        content3=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[3]/div[1]/text()')
+        value3 =content3[0].strip().lstrip().rstrip()
+        self.lineEdit_4.clear()
+        self.lineEdit_4.setText(value3)
+        #获取CO/1h_value
+        content4=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[4]/div[1]/text()')
+        value4 =content4[0].strip().lstrip().rstrip()
+        self.lineEdit_5.clear()
+        self.lineEdit_5.setText(value4)
+        #获取NO2/1h_value
+        content5=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[5]/div[1]/text()')
+        value5 =content5[0].strip().lstrip().rstrip()
+        self.lineEdit_6.clear()
+        self.lineEdit_6.setText(value5)
+        #获取O3/1h_value
+        content6=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[6]/div[1]/text()')
+        value6 =content6[0].strip().lstrip().rstrip()
+        self.lineEdit_7.clear()
+        self.lineEdit_7.setText(value6)
+        #获取O3/8h_value
+        content7=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[7]/div[1]/text()')
+        value7 =content7[0].strip().lstrip().rstrip()
+        self.lineEdit_8.clear()
+        self.lineEdit_8.setText(value7)
+        #获取SO2/1h_value
+        content8=selector.xpath('/html/body/div[2]/div[1]/div[3]/div[8]/div[1]/text()')
+        value8 =content8[0].strip().lstrip().rstrip()
+        self.lineEdit_9.clear()
+        self.lineEdit_9.setText(value8)
+
+#添加主函数
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    widget = QWidget(None)#注意，这里和我们一开始创建窗体时使用的界面类型相同  
+    ui =Ui_Form()
+    ui.setupUi(widget)
+    widget.show()
+    sys.exit(app.exec_())
+
